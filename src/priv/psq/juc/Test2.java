@@ -1,5 +1,8 @@
 package priv.psq.juc;
 
+import javafx.util.converter.TimeStringConverter;
+
+import java.sql.Time;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -77,13 +80,18 @@ public class Test2 {
     }
 
     public static void CallableTrain() {
-        //不知道为什么打印的在后面
+        //因为线程的启动㤇时间，先执行的主方法，后续才执行这个线程的方法
         FutureTask<Integer> ft = new FutureTask<>(() -> {
             System.err.println("this is callable");
             return 1;
         });
         new Thread(ft, "A").start();
-        System.err.println(ft.isDone() ? "线程执行完毕" : "线程为执行完毕");
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.err.println(ft.isDone() ? "线程执行完毕" : "线程未执行完毕");
         try {
             System.err.println(ft.get());
         } catch (InterruptedException | ExecutionException e) {
