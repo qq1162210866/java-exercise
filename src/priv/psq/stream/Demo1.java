@@ -3,8 +3,6 @@ package priv.psq.stream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Function;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -17,8 +15,9 @@ import java.util.stream.Collectors;
 public class Demo1 {
     public static void main(String[] args) {
         List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
-        ordinary(numbers);
-        streamTrain(numbers);
+//        ordinary(numbers);
+//        streamTrain(numbers);
+        sortedTrain();
 
 
     }
@@ -51,7 +50,19 @@ public class Demo1 {
         List<Integer> result = arr.stream().filter(integer -> integer > 5).collect(Collectors.toList());
         System.err.println(System.currentTimeMillis() - tmp);
         System.err.println(result);
+    }
 
+    public static void flatMapTrain() {
+        List<List<Integer>> arr = new ArrayList<>();
+        List<Integer> result = arr.stream().flatMap(integers -> integers.stream()).filter(integer -> integer > 5)
+                .collect(Collectors.toList());
+        System.err.println(result);
+    }
+
+    public static void sortedTrain() {
+        List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
+        List<Integer> result = numbers.stream().sorted((o1, o2) -> o2 - o1).limit(3).collect(Collectors.toList());
+        System.err.println(result);
     }
 
 }
