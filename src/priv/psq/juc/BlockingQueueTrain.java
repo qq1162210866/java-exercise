@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class BlockingQueueTrain {
 
+    //默认为非公平策略
     private static final BlockingQueue<String> blockingQueue = new ArrayBlockingQueue<>(5);
 
     public static void main(String[] args) {
