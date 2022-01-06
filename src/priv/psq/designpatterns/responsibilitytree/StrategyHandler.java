@@ -9,6 +9,7 @@ package priv.psq.designpatterns.responsibilitytree;
  */
 public interface StrategyHandler<T, R> {
 
+    @SuppressWarnings("rawtypes")
     public static StrategyHandler DEFAULT = param -> null;
 
     R apply(T param);

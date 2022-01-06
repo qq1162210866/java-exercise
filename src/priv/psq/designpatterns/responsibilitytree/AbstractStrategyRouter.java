@@ -13,18 +13,22 @@ public abstract class AbstractStrategyRouter<T, R> {
         StrategyHandler<T, R> get(T param);
     }
 
+
     private StrategyMapper<T, R> strategyMapper;
 
     public AbstractStrategyRouter() {
         strategyMapper = registerStrategyMapper();
     }
 
+    @SuppressWarnings("unchecked")
+    private StrategyHandler<T, R> defaultStrategyHandler = StrategyHandler.DEFAULT;
+
     public R applyStrategy(T param) {
         final StrategyHandler<T, R> strategyHandler = strategyMapper.get(param);
         if (strategyHandler != null) {
             return strategyHandler.apply(param);
         }
-        return (R) StrategyHandler.DEFAULT.apply(param);
+        return defaultStrategyHandler.apply(param);
     }
 
     public abstract StrategyMapper<T, R> registerStrategyMapper();
