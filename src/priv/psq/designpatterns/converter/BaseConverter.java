@@ -21,7 +21,7 @@ public abstract class BaseConverter<T extends BaseVO, R extends BaseDTO> {
      * Description:
      *
      * @param vo 要转换的vo
-     * @return T 返回的DTO
+     * @return R 返回的DTO
      * @author Peng Shiquan
      * @date 2022-03-11
      */
