@@ -1,6 +1,6 @@
 package priv.psq.old.arraytrain;
 
-import enumtrain.ClothesSize;
+import priv.psq.old.enumtrain.ClothesSize;
 
 import java.util.ArrayList;
 
